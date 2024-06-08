@@ -45,7 +45,7 @@ public class juego {
                     System.out.println("El tesoro más valioso encontrado tiene un valor de: " + tesoroMasValioso.tesoro.getValor());
                     break;
                 case 4:
-                    TesoroYNivel tesoroMasProfundo = arbol.tesoroMasProfundo();
+                    TesoroNivel tesoroMasProfundo = arbol.tesoroMasProfundo();
                     System.out.println("El tesoro más profundo encontrado tiene un valor de: " + tesoroMasProfundo.tesoro.getValor() +
                             " y se encuentra en el nivel: " + tesoroMasProfundo.nivel);
                     break;

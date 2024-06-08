@@ -44,7 +44,7 @@ import java.util.*;
                     padre.derecho = new Nodo(tesoro);
                     break;
                 default:
-                    System.out.println("Posición incorrecta. Seleccione izquierdo, medio o derecho.");
+                    System.out.println("Error, solo se admite: derecha, izquierda y centro");
             }
         } else {
             System.out.println("El nodo padre no existe.");
@@ -87,20 +87,20 @@ import java.util.*;
         return max;
     }
 
-    public TesoroYNivel tesoroMasProfundo() {
+    public TesoroNivel tesoroMasProfundo() {
         return tesoroMasProfundoRec(raiz, 0);
     }
 
-    private TesoroYNivel tesoroMasProfundoRec(Nodo nodo, int nivel) {
+    private TesoroNivel tesoroMasProfundoRec(Nodo nodo, int nivel) {
         if (nodo == null)
-            return new TesoroYNivel(null, -1);
+            return new TesoroNivel(null, -1);
 
         if (nodo.izquierdo == null && nodo.medio == null && nodo.derecho == null)
-            return new TesoroYNivel(nodo.tesoro, nivel);
+            return new TesoroNivel(nodo.tesoro, nivel);
 
-        TesoroYNivel izq = tesoroMasProfundoRec(nodo.izquierdo, nivel + 1);
-        TesoroYNivel med = tesoroMasProfundoRec(nodo.medio, nivel + 1);
-        TesoroYNivel der = tesoroMasProfundoRec(nodo.derecho, nivel + 1);
+        TesoroNivel izq = tesoroMasProfundoRec(nodo.izquierdo, nivel + 1);
+        TesoroNivel med = tesoroMasProfundoRec(nodo.medio, nivel + 1);
+        TesoroNivel der = tesoroMasProfundoRec(nodo.derecho, nivel + 1);
 
         if (izq.nivel >= med.nivel && izq.nivel >= der.nivel)
             return izq;
@@ -116,7 +116,7 @@ import java.util.*;
 
     private void mostrarEstructuraRec(Nodo nodo, int nivel) {
         if (nodo != null) {
-            System.out.println("Nivel " + nivel + ": Tesoro con valor " + nodo.tesoro.getValor());
+            System.out.println("Nivel " + nivel + ": el valor del tesoro es: " + nodo.tesoro.getValor());
             mostrarEstructuraRec(nodo.izquierdo, nivel + 1);
             mostrarEstructuraRec(nodo.medio, nivel + 1);
             mostrarEstructuraRec(nodo.derecho, nivel + 1);
