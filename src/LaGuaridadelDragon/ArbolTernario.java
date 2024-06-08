@@ -1,6 +1,5 @@
-package LaGuaridaDelDragon;
+package LaGuaridadelDragon;
 import java.util.*;
-
 
 
   public class ArbolTernario {
