@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class juego {
     public static void main(String[] args) {
         ArbolTernario arbol = new ArbolTernario();
-        arbol.predefinirEstructura();
+        arbol.armarEstructura();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -15,11 +15,11 @@ public class juego {
             System.out.println("\nMenu");
             System.out.println("1. Insertar tesoro");
             System.out.println("2. Mostrar estructura");
-            System.out.println("3. Buscar el tesoro más valioso");
-            System.out.println("4. Buscar el tesoro más profundo");
+            System.out.println("3. Buscar el tesoro mas valioso");
+            System.out.println("4. Buscar el tesoro mas profundo");
             System.out.println("5. Salir");
 
-            System.out.println("Elige una opción");
+            System.out.println("Elige una opcion");
             int opcion = scanner.nextInt();
 
             switch (opcion) {

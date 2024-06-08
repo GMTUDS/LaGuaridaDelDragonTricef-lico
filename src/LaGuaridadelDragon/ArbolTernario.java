@@ -11,7 +11,7 @@ import java.util.*;
         random = new Random();
     }
 
-    public void predefinirEstructura() {
+    public void armarEstructura() {
         Tesoro tesoroRaiz = new Tesoro(random.nextInt(100));
         raiz = new Nodo(tesoroRaiz);
         predefinirSubarbol(raiz, 2);
