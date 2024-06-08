@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package LaGuaridadelDragon;
-
 /**
  *
  * @author nn
  */
-
-
 public class ArbolTernario {
       private Nodo raiz;
       private int niveles;
@@ -18,6 +10,9 @@ public class ArbolTernario {
     public ArbolTernario() {
         this.raiz = null;
     }
+    public int getNiveles() {
+    return niveles;
+}
     public void inicializarArbol(int niveles) {
     this.raiz = construirArbolRecursivo(niveles, 1);
 }
@@ -38,7 +33,7 @@ private Nodo construirArbolRecursivo(int niveles, int nivelActual) {
         raiz = insertarRecursivo(raiz, tesoro);
     }
 
-   private Nodo insertarRecursivo(Nodo nodo, Tesoro tesoro) {
+    private Nodo insertarRecursivo(Nodo nodo, Tesoro tesoro) {
     if (nodo == null) {
         System.out.println("Insertando tesoro con valor: " + tesoro.verValor());
         return new Nodo(tesoro);
@@ -64,6 +59,41 @@ private Nodo construirArbolRecursivo(int niveles, int nivelActual) {
     return nodo;
 }
 
+    public void insertarEnNivel(Tesoro tesoro, int nivel) {
+    insertarEnNivelRecursivo(raiz, tesoro, nivel, 1);
+    }
+
+    private void insertarEnNivelRecursivo(Nodo nodo, Tesoro tesoro, int nivelDeseado, int nivelActual) {
+    if (nivelActual == nivelDeseado) {
+        insertar(tesoro, nodo);
+        return;
+    }
+
+    if (nodo != null) {
+        insertarEnNivelRecursivo(nodo.verNodoIzquierdo(), tesoro, nivelDeseado, nivelActual + 1);
+        insertarEnNivelRecursivo(nodo.verNodoCentral(), tesoro, nivelDeseado, nivelActual + 1);
+        insertarEnNivelRecursivo(nodo.verNodoDerecho(), tesoro, nivelDeseado, nivelActual + 1);
+    }
+}   
+
+    private void insertar(Tesoro tesoro, Nodo nodo) {
+    if (nodo == null) {
+        System.out.println("Insertando tesoro con valor " + tesoro.verValor() + " en este nivel");
+        nodo = new Nodo(tesoro);
+    } else {
+        if (nodo.verNodoIzquierdo() == null) {
+            nodo.modifNodoIzquierdo(new Nodo(tesoro));
+        } else if (nodo.verNodoCentral() == null) {
+            nodo.modifNodoCentral(new Nodo(tesoro));
+        } else if (nodo.verNodoDerecho() == null) {
+            nodo.modifNodoDerecho(new Nodo(tesoro));
+        } else {
+            System.out.println("No hay espacio disponible en este nivel para insertar el tesoro.");
+
+        }
+    }   
+}
+   
     public Tesoro buscarTesoroMasValioso() {
         return buscarTesoroMasValiosoRecursivo(raiz, null);
     }
@@ -89,7 +119,7 @@ private Nodo construirArbolRecursivo(int niveles, int nivelActual) {
     return buscarTesoroMasValiosoRecursivo(raiz, null, 0, 0);
 }
 
-public NivelTesoro buscarTesoroMasValiosoRecursivo(Nodo nodo, NivelTesoro tesoroNivelMasProfundo, int nivelActual, int nivelMasProfundo) {
+    public NivelTesoro buscarTesoroMasValiosoRecursivo(Nodo nodo, NivelTesoro tesoroNivelMasProfundo, int nivelActual, int nivelMasProfundo) {
     if (nodo == null) {
         return tesoroNivelMasProfundo;
     }
@@ -117,5 +147,5 @@ public NivelTesoro buscarTesoroMasValiosoRecursivo(Nodo nodo, NivelTesoro tesoro
     }
 
     return tesoroNivelMasProfundo;
-}
+    }
 }
