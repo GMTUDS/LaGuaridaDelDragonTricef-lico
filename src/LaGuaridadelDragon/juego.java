@@ -9,6 +9,7 @@ public class juego {
    
     public static void main(String[] args) {
            
+        
         Scanner scanner = new Scanner(System.in);
         ArbolTernario arbol = new ArbolTernario();
 
@@ -30,10 +31,10 @@ public class juego {
                     buscarTesoroMasValioso(arbol);
                     break;
                 case 3:
-                    System.out.println("Hasta luego!");
+                    System.out.println("Usted ha salido del juego");
                     return;
                 default:
-                    System.out.println("Opción inválida. Ingrese una opción válida");
+                    System.out.println("Opción inválida, ingrese una opción válida.");
             }
         }
     }
@@ -41,17 +42,17 @@ public class juego {
     private static void explorarCueva(ArbolTernario arbol, Scanner scanner) {
         System.out.print("Ingrese el valor del tesoro: ");
         int valor = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea
+        scanner.nextLine();
 
         System.out.print("Ingrese la descripción del tesoro: ");
         String descripcion = scanner.nextLine();
 
         Tesoro tesoro = new Tesoro(valor, descripcion);
         arbol.insertar(tesoro);
-        System.out.println("Tesoro añadido a la cueva.");
+        System.out.println("Tesoro añadido");
     }
 
-    private static void buscarTesoroMasValioso(ArbolTernario arbol) {
+   private static void buscarTesoroMasValioso(ArbolTernario arbol) {
         Tesoro tesoroMasValioso = arbol.buscarTesoroMasValioso();
         if (tesoroMasValioso != null) {
             System.out.println("El tesoro más valioso es:");
@@ -61,4 +62,17 @@ public class juego {
             System.out.println("No hay tesoros en la cueva.");
         }
     }
+   private static void buscarNivelTesoroMasValioso(ArbolTernario arbol) {
+    NivelTesoro tesoroNivelMasProfundo = arbol.TesoroMasValioso();
+    if (tesoroNivelMasProfundo != null) {
+     tesoroNivelMasProfundo = arbol.TesoroMasValioso();  
+     System.out.println("El tesoro más valioso se encuentra en el nivel: " + tesoroNivelMasProfundo.getNivel());
+        System.out.println("Valor: " + tesoroNivelMasProfundo.getTesoro().verValor());
+        System.out.println("Descripción: " + tesoroNivelMasProfundo.getTesoro().verDescripcion());
+    } else {
+        System.out.println("No hay tesoros en la cueva.");
+    }
+}
+   
+
 }

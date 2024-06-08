@@ -66,8 +66,7 @@ public class ArbolTernario {
         return buscarTesoroMasValiosoRecursivo(raiz, null, 0, 0);
     }
 
-    private NivelTesoro buscarTesoroMasValiosoRecursivo(Nodo nodo, NivelTesoro tesoroNivelMasProfundo,
-                                                         int nivelActual, int nivelMasProfundo) {
+    public NivelTesoro buscarTesoroMasValiosoRecursivo(Nodo nodo, NivelTesoro tesoroNivelMasProfundo, int nivelActual, int nivelMasProfundo) {
         if (nodo == null) {
             return tesoroNivelMasProfundo;
         }
