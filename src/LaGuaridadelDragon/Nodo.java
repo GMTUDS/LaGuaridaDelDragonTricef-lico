@@ -1,6 +1,7 @@
 
 package LaGuaridadelDragon;
 
+<<<<<<< Updated upstream
 
 public class Nodo{
 Tesoro tesoro;
@@ -13,3 +14,5 @@ Nodo izquierdo, medio, derecho;
     this.derecho = null;
     }
 }
+=======
+>>>>>>> Stashed changes
