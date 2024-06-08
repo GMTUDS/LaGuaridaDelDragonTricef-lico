@@ -2,117 +2,125 @@ package LaGuaridaDelDragon;
 import java.util.*;
 
 
-public class ArbolTernario {
+
+  public class ArbolTernario {
     Nodo raiz;
     Random random;
-    
-public ArbolTernario(){
-    raiz = null;
-    random = new Random();
-}
-    public void predefinirEstructura() {
 
-    Tesoro tesoroRaiz = new Tesoro(random.nextint(lOO)) ;
-    raiz = new Nodo(tesoroRaiz) ;
-    predefinirSubarbol(raiz , 2) ;
-}
-    private void predefinirSubarbol(Nodo nodo, int nivelesRestantes) {
-       if (nivelesRestantes == O) 
-            return;
-    
-    nodo.izquierdo = new Nodo(new Tesoro(random. nextint(lOO)));
-    nodo.medio = new Nodo(new Tesoro(random. nextlnt(lOO)));
-    nodo.derecho = new Nodo(new Tesoro( random.nextint (lOO)));
-
-    predefinirSubarbol(nodo.izquierdo, nivelesRestantes - 1) ;
-    predefinirSubarbol(nodo.medio, nivelesRestantes - l) ;
-    predefinirSubarbol(nodo.derecho, nivelesRestantes - l) ;
-
-
-
-public void insertar(Tesoro tesoro, Nodo padre, String posicion) {
-    switch(posicion.toLowerCase()) {
-
-    case "izquierdo":
-        padre.izquierdo = new Nodo(tesoro);
-        System.out.println("Tesoro insertado a la izquierda de " + padre.tesoro.getValor());
-        break;
-    case "medio" :
-        padre .medio = new Nodo(tesoro);
-        System.out.println("Tesoro insertado al medio de " + padre.tesoro.getValor());
-        break;
-    case "derecho" :
-        padre.derecho = new Nodo(tesoro);
-        System.out.println("Tesoro insertado a la dereccha de " + padre.tesoro.getValor());
-        break;
-    default:
-        System.out.println("Posicion incorrecta. Seleccione izquierda, medio o derecha " );
-        break;
+    public ArbolTernario() {
+        raiz = null;
+        random = new Random();
     }
-}
-    public Nodo buscarTesoroMasValioso(){
+
+    public void predefinirEstructura() {
+        Tesoro tesoroRaiz = new Tesoro(random.nextInt(100));
+        raiz = new Nodo(tesoroRaiz);
+        predefinirSubarbol(raiz, 2);
+    }
+
+    private void predefinirSubarbol(Nodo nodo, int nivelesRestantes) {
+        if (nivelesRestantes == 0)
+            return;
+
+        nodo.izquierdo = new Nodo(new Tesoro(random.nextInt(100)));
+        nodo.medio = new Nodo(new Tesoro(random.nextInt(100)));
+        nodo.derecho = new Nodo(new Tesoro(random.nextInt(100)));
+
+        predefinirSubarbol(nodo.izquierdo, nivelesRestantes - 1);
+        predefinirSubarbol(nodo.medio, nivelesRestantes - 1);
+        predefinirSubarbol(nodo.derecho, nivelesRestantes - 1);
+    }
+
+    public void insertar(Tesoro tesoro, int valorPadre, String posicion) {
+        Nodo padre = buscarNodo(raiz, valorPadre);
+        if (padre != null) {
+            switch (posicion.toLowerCase()) {
+                case "izquierdo":
+                    padre.izquierdo = new Nodo(tesoro);
+                    break;
+                case "medio":
+                    padre.medio = new Nodo(tesoro);
+                    break;
+                case "derecho":
+                    padre.derecho = new Nodo(tesoro);
+                    break;
+                default:
+                    System.out.println("Posición incorrecta. Seleccione izquierdo, medio o derecho.");
+            }
+        } else {
+            System.out.println("El nodo padre no existe.");
+        }
+    }
+
+    private Nodo buscarNodo(Nodo nodo, int valor) {
+        if (nodo == null || nodo.tesoro.getValor() == valor)
+            return nodo;
+
+        Nodo encontrado = buscarNodo(nodo.izquierdo, valor);
+        if (encontrado == null)
+            encontrado = buscarNodo(nodo.medio, valor);
+        if (encontrado == null)
+            encontrado = buscarNodo(nodo.derecho, valor);
+
+        return encontrado;
+    }
+
+    public Nodo buscarTesoroMasValioso() {
         return buscarTesoroMasValiosoRec(raiz);
     }
-    private Nodo buscarTesoroMasValiosoReo (Nodo nodo){
-        if (nodo - null ) {
-            return null ;
-    }
-        Nodo maxizquierdo = buscarTesoroMasValiosoRec (nodo . izquio::rdo) ;
-        Nodo maxHedio = buscarTesoroHasValiosoRec(nodo. mo::dl.o );
-        Nodo maxDerecho = buscarTesooMasValiosoRec(nodo .derecho ) ;
+
+    private Nodo buscarTesoroMasValiosoRec(Nodo nodo) {
+        if (nodo == null)
+            return null;
+
+        Nodo maxIzquierdo = buscarTesoroMasValiosoRec(nodo.izquierdo);
+        Nodo maxMedio = buscarTesoroMasValiosoRec(nodo.medio);
+        Nodo maxDerecho = buscarTesoroMasValiosoRec(nodo.derecho);
+
         Nodo max = nodo;
-        if(maxlzguierdo != null && maxIzguierdo.tesoro.getValor() > max.tesoro.getValor()) {
-            max = maxizquierdo ;
-        }
-        if(maxMedio != null && maxMedio.tesoro.getValor() > max.tesoro.getValor()) {
-            max = maxHedio ;
-        }
-        if(maxDerech != null && maxDerecho.tesoro.getValor() > max.tesoro.getValor()) {
-            max = maxDerecho ;
-        }
+        if (maxIzquierdo != null && maxIzquierdo.tesoro.getValor() > max.tesoro.getValor())
+            max = maxIzquierdo;
+        if (maxMedio != null && maxMedio.tesoro.getValor() > max.tesoro.getValor())
+            max = maxMedio;
+        if (maxDerecho != null && maxDerecho.tesoro.getValor() > max.tesoro.getValor())
+            max = maxDerecho;
+
         return max;
-        }
+    }
 
-        public int nivelNodo(Nodo nodo) {
-            return nivelNodoRec(raiz, nodo, 0) ;
-}
-      private int nivelNodoRec(Nodo actual , Nodo nodo, int nivel) {
+    public TesoroYNivel tesoroMasProfundo() {
+        return tesoroMasProfundoRec(raiz, 0);
+    }
 
-        íf(actual == null ) {
-            return -1;
-        }
-        if(actual == nodo) {
-            return nivel;
-        }
-        ínt nivelizquierdo = nivelNodoRec(actual.Izquierdo, nodo, nivel+ l) ;
-        íf (nivelIzquierdo != -1) {
-            return nivelizquierdo;
-        }
-        int nivelMedio = nivelNodoRec(actual.medio, nodo, nivel+ l);
-        if (nivelMedio != - 1) {
-            return nivelMedio ;
-        }
-        return nívelNodoRec(actual.derecho, nodo, nivel+ l);
-        public TesoroYNivel tesoroMasProfundo() {
-        return tesoroMasProfundoRec(raiz , 0) ;
-        }
+    private TesoroYNivel tesoroMasProfundoRec(Nodo nodo, int nivel) {
+        if (nodo == null)
+            return new TesoroYNivel(null, -1);
 
-prívate TesoroYNivel tesoroMasProfundoRec(Nodo nodo , int nivel){
-        if(nodo == null ) {
-        return new TesoroYNível (null, -1);
-        }
-        if(nodo.izquierdo = null && nodo.medio = null && nodo. derecho == null){
-        return new TesoroYNivel(nodo.tesoro, nivel);
-        }
-        
-        TesoroYNivel izq = tesoroMasProfundoRec(nodo.izquierdo, nivel+ l);
-        TesoroYNivel med = tesoroMasProfundoRec (nodo.medio, nivel+ l );
-        TesoroYNivel der = tesoroMasProfundoRec (nodo.derecho, nivel+ l ) ;
-        if (izq.nivel >= med.nivel && 1zq.n1vel >= der.nivel) {
+        if (nodo.izquierdo == null && nodo.medio == null && nodo.derecho == null)
+            return new TesoroYNivel(nodo.tesoro, nivel);
+
+        TesoroYNivel izq = tesoroMasProfundoRec(nodo.izquierdo, nivel + 1);
+        TesoroYNivel med = tesoroMasProfundoRec(nodo.medio, nivel + 1);
+        TesoroYNivel der = tesoroMasProfundoRec(nodo.derecho, nivel + 1);
+
+        if (izq.nivel >= med.nivel && izq.nivel >= der.nivel)
             return izq;
-        } else if (med. nivel >= izq.nivel && med.nivel >= der.nivel) {
+        else if (med.nivel >= izq.nivel && med.nivel >= der.nivel)
             return med;
-        } else {
+        else
             return der;
+    }
+
+    public void mostrarEstructura() {
+        mostrarEstructuraRec(raiz, 0);
+    }
+
+    private void mostrarEstructuraRec(Nodo nodo, int nivel) {
+        if (nodo != null) {
+            System.out.println("Nivel " + nivel + ": Tesoro con valor " + nodo.tesoro.getValor());
+            mostrarEstructuraRec(nodo.izquierdo, nivel + 1);
+            mostrarEstructuraRec(nodo.medio, nivel + 1);
+            mostrarEstructuraRec(nodo.derecho, nivel + 1);
+        }
     }
 }

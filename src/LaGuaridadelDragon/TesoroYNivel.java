@@ -9,6 +9,12 @@ package LaGuaridadelDragon;
  *
  * @author nn
  */
-public class TesoroNivel {
-    
+class TesoroYNivel {
+    Tesoro tesoro;
+    int nivel;
+
+    public TesoroYNivel(Tesoro tesoro, int nivel) {
+        this.tesoro = tesoro;
+        this.nivel = nivel;
+    }
 }
