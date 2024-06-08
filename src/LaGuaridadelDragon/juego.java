@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
 package LaGuaridadelDragon;
 
@@ -99,3 +100,5 @@ public class juego {
         }
     }
 }
+=======
+>>>>>>> Stashed changes

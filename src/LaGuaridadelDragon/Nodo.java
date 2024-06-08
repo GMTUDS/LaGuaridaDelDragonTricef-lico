@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package LaGuaridadelDragon;
 /**
  *
@@ -8,41 +9,9 @@ public class Nodo {
     private Nodo izquierdo;
     private Nodo central;
     private Nodo derecho;
+=======
 
-    public Nodo(Tesoro tesoro) {
-        this.tesoro = tesoro;
-        this.izquierdo = null;
-        this.central = null;
-        this.derecho = null;
-    }
+package LaGuaridadelDragon;
 
-    public Tesoro verTesoro() {
-        return tesoro;
-    }
+>>>>>>> Stashed changes
 
-    public Nodo verNodoIzquierdo() {
-        return izquierdo;
-    }
-
-    public Nodo verNodoCentral() {
-        return central;
-    }
-
-    public Nodo verNodoDerecho() {
-        return derecho;
-    }
-
-    public void modifNodoIzquierdo(Nodo nodo) {
-        this.izquierdo = nodo;
-    }
-
-    public void modifNodoCentral(Nodo nodo) {
-        this.central = nodo;
-    }
-
-    public void modifNodoDerecho(Nodo nodo) {
-        this.derecho = nodo;
-    }
-
-    
-}

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package LaGuaridadelDragon;
 /**
  *
@@ -149,3 +150,6 @@ private Nodo construirArbolRecursivo(int niveles, int nivelActual) {
     return tesoroNivelMasProfundo;
     }
 }
+=======
+
+>>>>>>> Stashed changes

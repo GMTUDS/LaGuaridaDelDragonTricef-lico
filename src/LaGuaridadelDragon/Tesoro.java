@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package LaGuaridadelDragon;
 /**
  *
@@ -24,3 +25,5 @@ public class Tesoro {
 
    
 
+=======
+>>>>>>> Stashed changes
